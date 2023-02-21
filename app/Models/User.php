@@ -61,4 +61,33 @@ class User extends Authenticatable implements MustVerifyEmail
             ->withPivot('phone_type_id', 'preferred_contact_number')
             ->withTimestamps();
     }
+
+    public function addresses()
+    {
+        return $this
+            ->belongsToMany('App\Models\Address')
+            ->withPivot('address_type_id', 'preferred_contact_address')
+            ->withTimestamps();
+    }
+
+    public function userUserType()
+    {
+        return $this->hasMany('App\Models\UserUserType');
+    }
+
+    public function userTypes()
+    {
+        return $this->belongsToMany('App\Models\UserType')
+            ->withTimestamps();
+    }
+    public function notificationPreference()
+    {
+        return $this->hasOne(NotificationPreference::class);
+    }
+    public function notificationTopics()
+    {
+        return $this
+            ->belongsToMany(NotificationTopic::class,'notification_topic_user')
+            ->withTimestamps();
+    }
 }

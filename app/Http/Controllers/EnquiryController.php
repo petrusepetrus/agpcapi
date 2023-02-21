@@ -7,6 +7,7 @@ use App\Models\EnquiryComment;
 use App\Models\EnquiryStatus;
 use App\Models\EnquiryType;
 use App\Models\User;
+use App\Notifications\EnquiryReceived;
 use App\Searches\EnquirySearch\EnquirySearch;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Broadcasting\Channel;
+use Illuminate\Support\Facades\Notification;
 
 
 class EnquiryController extends Controller
@@ -146,7 +149,7 @@ class EnquiryController extends Controller
 
         $enquiry->google_chk = $request->get('google_chk');
         $enquiry->you_tube_chk = $request->get('you_tube_chk');
-        $enquiry->facebook = $request->get('facebook');
+        $enquiry->facebook_chk = $request->get('facebook_chk');
         $enquiry->twitter_chk = $request->get('twitter_chk');
         $enquiry->tik_tok_chk = $request->get('tik_tok_chk');
         $enquiry->linked_in_chk = $request->get('linked_in_chk');
@@ -172,6 +175,10 @@ class EnquiryController extends Controller
          * And save it to the enquiry table
          */
         $enquiry->save();
+        $email=$request->get('email');
+        Log::error($email);
+        Notification::route('mail',$email)
+            ->notify(new EnquiryReceived);
     }
 
     /**

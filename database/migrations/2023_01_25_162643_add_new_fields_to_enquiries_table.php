@@ -28,7 +28,7 @@ return new class extends Migration
 
             $table->boolean('google_chk')->nullable();
             $table->boolean('you_tube_chk')->nullable();
-            $table->boolean('facebook')->nullable();
+            $table->boolean('facebook_chk')->nullable();
             $table->boolean('twitter_chk')->nullable();
             $table->boolean('tik_tok_chk')->nullable();
             $table->boolean('linked_in_chk')->nullable();
@@ -59,7 +59,7 @@ return new class extends Migration
 
             $table->dropColumn('google_chk');
             $table->dropColumn('you_tube_chk');
-            $table->dropColumn('facebook');
+            $table->dropColumn('facebook_chk');
             $table->dropColumn('twitter_chk');
             $table->dropColumn('tik_tok_chk');
             $table->dropColumn('linked_in_chk');
