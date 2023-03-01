@@ -195,6 +195,14 @@ class EnquiryController extends Controller
             ->with(['enquiryComments' => function ($query) {
                 $query->orderBy('created_at', 'desc');
             }])
+            ->with(['user' => function ($query) {
+                $query
+                    ->with('roles')
+                    ->with('permissions')
+                    ->with('userUserType.userType')
+                    ->with('userUserType.userTypeStatus')
+                    ->with('notificationPreference');
+            }])
             ->first();
 
         Log::error($enquiry);

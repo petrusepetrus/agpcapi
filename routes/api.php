@@ -8,6 +8,7 @@ use App\Http\Controllers\EnquiryCommentController;
 use App\Http\Controllers\EnquiryController;
 use App\Http\Controllers\EnquiryStatusController;
 use App\Http\Controllers\EnquiryTypeController;
+use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PhoneTypeController;
 use App\Http\Controllers\PhoneUserController;
@@ -83,12 +84,16 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/get-enquiry-comments/enquiry/{id}',[EnquiryController::class,'getEnquiryComments']);
 
     Route::post('/update-enquiry-status/{id}/status/{status}', [EnquiryController::class, 'updateEnquiryStatus']);
+
+    Route::post('/invite/enquirer/', [InvitationController::class, 'store']);
 });
 
 Route::get('/countries', [CountryController::class, 'getCountries']);
 Route::get('/phone-types', [PhoneTypeController::class, 'index']);
 Route::get('/enquiry-types', [EnquiryTypeController::class, 'index']);
 Route::post('/store-enquiry',[EnquiryController::class,'store']);
+Route::get('/retrieve-invitation/{id}', [InvitationController::class, 'show']);
+Route::post('/revoke-invitation/{id}', [InvitationController::class, 'revoke']);
 
 Route::fallback(function () {
     return response()->json([

@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
             'last_name'=>'Stone',
             'name' => 'Peter Stone',
             'email' => 'peter.stone@agapanthus-consulting.com',
-            'password' => Hash::make('trisfmitp32'),
+            'password' => Hash::make('S7[tD24F}kcCx]Mb1'),
         ]);
     }
 }
