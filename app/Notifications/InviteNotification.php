@@ -43,10 +43,10 @@ class InviteNotification extends Notification
     {
         return (new MailMessage)
             ->greeting('Hi')
-            ->line('This is an invitation to enrol in the Principle Pilates site.')
+            ->line('This is an invitation to enrol at the Agapanthus Consulting website.')
             ->line('Please click on the link below to enrol.')
             ->action('Notification Action', $this->notification_url)
-            ->line('If you have received this in error or no longer wish to enrol then plaes ignore.')
+            ->line('If you have received this in error or you no longer wish to enrol then please ignore this invitation.')
             ->line('No further action is required.');
     }
 
