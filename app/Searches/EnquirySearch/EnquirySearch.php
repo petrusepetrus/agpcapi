@@ -15,10 +15,12 @@ class EnquirySearch
         /*
          * Create the base query of the enquiry with their phones, user types and user type statuses
          */
-        $enquiryList = (new Enquiry)->newQuery();
+        $enquiryList = (new Enquiry)
+            ->newQuery()
+            ->orderBy('created_at', 'desc');
         $enquiryList->with('enquiryType')
             ->with('enquiryStatus');
-        Log::warning( $enquiryList->get());
+        Log::warning($enquiryList->get());
         //    ->with('EnquiryTypes.enquiryStatus');
         /*
          * If we have a request to filter by name apply that filter

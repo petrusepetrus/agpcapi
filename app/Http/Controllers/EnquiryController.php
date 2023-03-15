@@ -7,6 +7,7 @@ use App\Models\EnquiryComment;
 use App\Models\EnquiryStatus;
 use App\Models\EnquiryType;
 use App\Models\User;
+use App\Notifications\EnquiryAlert;
 use App\Notifications\EnquiryReceived;
 use App\Searches\EnquirySearch\EnquirySearch;
 use Carbon\Carbon;
@@ -28,6 +29,8 @@ class EnquiryController extends Controller
     public function index(Request $request)
     {
         $enquiry_list = EnquirySearch::apply($request);
+
+
         //$user_list=User::with('roles')
         //->with('permissions')
         //    ->with('userUserType')
@@ -40,6 +43,7 @@ class EnquiryController extends Controller
         } else {
             $recordsPerPage = 5;
         }
+
         return $enquiry_list->paginate($recordsPerPage);
     }
 
@@ -179,6 +183,8 @@ class EnquiryController extends Controller
         Log::error($email);
         Notification::route('mail',$email)
             ->notify(new EnquiryReceived);
+        Notification::route('mail',env('MAIL_FROM_ADDRESS'))
+            ->notify(new EnquiryAlert($enquiry));
     }
 
     /**
