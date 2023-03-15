@@ -19,7 +19,7 @@ class EnquiryTypeSeeder extends Seeder
             ['enquiry_type'=>'New Website'],
             ['enquiry_type'=>'Redesign of Existing Website'],
             ['enquiry_type'=>'Website Maintenance'],
-            ['enquiry_type'=>'Search Engine Optimisation and Ranking'],
+            ['enquiry_type'=>'Search Engine Optimisation and Digital Marketing'],
             ['enquiry_type'=>'Something Else'],
         ];
         DB::table('enquiry_types')->insert($enquiry_types);
