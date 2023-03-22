@@ -18,6 +18,7 @@ class PhoneTypeSeeder extends Seeder
         $phone_types=[
             ['phone_type'=>'Home'],
             ['phone_type'=>'Business'],
+            ['phone_type'=>'Mobile'],
         ];
         DB::table('phone_types')->insert($phone_types);
     }

@@ -64,7 +64,7 @@ class InvitationController extends Controller
         $invitation_token = $this->generateInvitationToken();
         $registered = Carbon::now();
         $expires = Carbon::now()->addHours(72);
-        LOG::error($expires);
+
         $invitation = new Invitation([
             'invitation_token' => $invitation_token,
             'email' => $request->get('email'),
@@ -82,7 +82,7 @@ class InvitationController extends Controller
          */
         $new_status_id = EnquiryStatus::where('enquiry_status', '=', 'Invited')->value('id');
         $enquiry=Enquiry::where('id','=',$request->get('enquiry_id'))->first();
-        Log::error($new_status_id.' '.$enquiry);
+
         $enquiry->enquiry_status_id = $new_status_id;
         $enquiry->save();
 
